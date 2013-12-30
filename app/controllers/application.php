@@ -73,7 +73,7 @@ class Application extends CI_Controller {
             'back_stroke_colour' => '#eee',
             'label_x' => 'Imiona pracowników',
             'label_y' => 'Liczba klientów',
-            'axis_colour' => '#333',
+            'axis_colour' => '#555',
             'axis_overlap' => 2,
             'axis_font' => 'Arial',
             'axis_font_size' => 10,
