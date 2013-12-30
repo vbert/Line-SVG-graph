@@ -33,7 +33,7 @@ class Application extends CI_Controller {
         
         $response_sidebar = array();
         
-        $this->response['extend_js'] = $_graph['graph_js'];
+        $this->response['extend_js'] = ''; //$_graph['graph_js'];
         $this->response['content'] = $this->load->view('graph', $response_content, true);
         $this->response['sidebar'] = $this->load->view('sidebar', $response_sidebar, true);
         $this->load->view('base.php', $this->response);
@@ -60,7 +60,7 @@ class Application extends CI_Controller {
     
     private function _set_default_settings() {
         $this->settings = array(
-            'graph_title' => "Przykładowy wykres liniowy\nGrudzień 2013",
+            'graph_title' => "Przykładowy wykres liniowy\n2013",
             'graph_title_font' => 'sans-serif',
             'graph_title_font_size' => '17px',
             'graph_title_font_weight' => '700',
@@ -86,7 +86,12 @@ class Application extends CI_Controller {
             'fill_under' => array(true, true, true),
             'marker_size' => 3,
             'marker_type' => array('circle', 'square', 'triangle'),
-            'marker_colour' => array('blue', 'red', 'yellow')
+            'marker_colour' => array('blue', 'red', 'yellow'),
+            'legend_title' => 'Legenda',
+            'legend_entries' => array('Październik', 'Listopad', 'Grudzień'),
+            'legend_position' => 'top right 30 -70',
+            'legend_back_colour' => '#d9edf7',
+            'legend_round' => 3
         );
         return $this->settings;
     }
