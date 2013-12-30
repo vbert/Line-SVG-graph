@@ -1,0 +1,8 @@
+*.~
+*.bak
+*.kpf
+*.komodoproject
+.project
+.settings/*
+.komodotools/*
+dev.db
