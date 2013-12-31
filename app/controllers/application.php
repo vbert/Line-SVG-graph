@@ -26,36 +26,100 @@ class Application extends CI_Controller {
     
     public function index() {
         $_graph = $this->_do_graph();
+        $post = $this->input->post(NULL, TRUE);
         
         $response_content = array(
             'graph' => $_graph['graph']
         );
         
-        $response_sidebar = array();
+        $response_sidebar = array(
+            'post' => $post
+        );
         
-        $this->response['extend_js'] = ''; //$_graph['graph_js'];
+        $this->response['extend_js'] = $_graph['graph_js'];
+        $this->response['content'] = $this->load->view('graph', $response_content, true);
+        $this->response['sidebar'] = $this->load->view('sidebar', $response_sidebar, true);
+        $this->load->view('base.php', $this->response);
+    }
+    
+    public function refresh_graph() {
+        $settings = $this->_set_default_settings();
+        $post = $this->input->post(NULL, TRUE);
+        
+        if (!empty($post['graph_title'])) {
+            $settings['graph_title'] = $post['graph_title'];
+            $this->_set_width(750);
+        }
+        
+        $this->_set_settings($settings);
+        $_graph = $this->_do_graph();
+        
+        $response_content = array(
+            'graph' => $_graph['graph']
+        );
+        
+        $response_sidebar = array(
+            'post' => $post
+        );
+        
+        $this->response['extend_js'] = $_graph['graph_js'];
         $this->response['content'] = $this->load->view('graph', $response_content, true);
         $this->response['sidebar'] = $this->load->view('sidebar', $response_sidebar, true);
         $this->load->view('base.php', $this->response);
     }
     
     private function _do_graph() {
-        $settings = (count($this->settings) > 0) ? $this->settings : $this->_set_default_settings();
-        $values = (count($this->values) > 0) ? $this->values : $this->_set_default_values();
-        $colours = (count($this->colours) > 0) ? $this->colours : $this->_set_default_colours();
+        $settings = (count($s = $this->_get_settings()) > 0) ? $s : $this->_set_default_settings();
+        $values = (count($v = $this->values) > 0) ? $v : $this->_set_default_values();
+        $colours = (count($c = $this->colours) > 0) ? $c : $this->_set_default_colours();
         $width = isset($this->width) ? $this->width : $this->_set_default_width();
         $height = isset($this->height) ? $this->height : $this->_set_default_height();
         
         $this->graph = new SVGGraph($width, $height, $settings);
 		$this->graph->Values($values);
         $this->graph->Colours($colours);
-        $graph = $this->graph->Fetch('MultiLineGraph', false);
+        $graph = $this->graph->Fetch('MultiLineGraph');
         $graph_js = $this->graph->FetchJavascript();
         
         return array(
             'graph' => $graph,
             'graph_js' => $graph_js
         );
+    }
+    
+    private function _set_settings($settings=array()) {
+        $this->settings = $settings;
+    }
+    private function _get_settings() {
+        return $this->settings;
+    }
+    
+    private function _set_values($values=array()) {
+        $this->values = $values;
+    }
+    private function _get_values() {
+        return $this->values;
+    }
+    
+    private function _set_colours($colours=array()) {
+        $this->colours = $colours;
+    }
+    private function _get_colours() {
+        return $this->colours;
+    }
+    
+    private function _set_width($width=NULL) {
+        $this->width = $width;
+    }
+    private function _get_width() {
+        return $this->width;
+    }
+    
+    private function _set_height($height=NULL) {
+        $this->height = $height;
+    }
+    private function _get_height() {
+        return $this->height;
     }
     
     private function _set_default_settings() {
@@ -67,6 +131,11 @@ class Application extends CI_Controller {
             'graph_title_space' => 20,
             'graph_title_colour' => '#d00',
             'graph_title_position' => 'top',
+            'legend_title' => 'Legenda',
+            'legend_entries' => array('Październik', 'Listopad', 'Grudzień'),
+            'legend_position' => 'top right 30 -70',
+            'legend_back_colour' => '#d9edf7',
+            'legend_round' => 3,
             'back_colour' => '#eee',
             'stroke_colour' => '#000',
             'back_stroke_width' => 0,
@@ -86,12 +155,7 @@ class Application extends CI_Controller {
             'fill_under' => array(true, true, true),
             'marker_size' => 3,
             'marker_type' => array('circle', 'square', 'triangle'),
-            'marker_colour' => array('blue', 'red', 'yellow'),
-            'legend_title' => 'Legenda',
-            'legend_entries' => array('Październik', 'Listopad', 'Grudzień'),
-            'legend_position' => 'top right 30 -70',
-            'legend_back_colour' => '#d9edf7',
-            'legend_round' => 3
+            'marker_colour' => array('blue', 'red', 'yellow')
         );
         return $this->settings;
     }
