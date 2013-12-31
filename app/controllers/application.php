@@ -146,7 +146,7 @@ class Application extends CI_Controller {
             'legend_round' => 3,
             'stroke_colour' => '#d00',
             'stroke_width' => 0,
-            'back_colour' => '#f1f1f1',
+            'back_colour' => '#ffd',
             'back_round' => 5,
             'back_stroke_width' => 1,
             'back_stroke_colour' => '#ddd',

@@ -17,7 +17,7 @@
 								   'rows'=>2,'value'=>$post['graph_title']));?>
 		</div>
 		<div class="row">
-			<div class="col-xs-5">
+			<div class="col-xs-6">
 				<?php
 				$options = array(
 					'12px' => '12 px',
@@ -28,9 +28,12 @@
 				$select = $post['graph_title_font_size'];
 				$more = 'id="graph_title_font_size" class="form-control input-sm" title="Rozmiar czcionki tytułu"';
 				?>
-				<?=form_dropdown('graph_title_font_size', $options, $select, $more);?>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-text-height" title="Rozmiar czcionki tytułu"></i></span>
+					<?=form_dropdown('graph_title_font_size', $options, $select, $more);?>
+				</div>
 			</div>
-			<div class="col-xs-7">
+			<div class="col-xs-6">
 				<div class="input-group" id="graphTitleColour">
 					<?=form_input(array('id'=>'graph_title_colour','name'=>'graph_title_colour',
 										'class'=>'form-control input-sm','placeholder'=>'Kolor tytułu',
@@ -39,24 +42,30 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<?=form_label('Tło wykresu', 'back_colour');?>
+		
+			
 			<div class="row">
 				<div class="col-xs-7">
-					<div class="input-group" id="graphBgColour">
-						<?=form_input(array('id'=>'back_colour','name'=>'back_colour',
-											'class'=>'form-control input-sm','placeholder'=>'Kolor tła',
-											'value'=>$post['back_colour']));?>
-						<span class="input-group-addon"><i></i></span>
+					<div class="form-group">
+						<?=form_label('Tło wykresu', 'back_colour');?>
+						<div class="input-group" id="graphBgColour">
+							<?=form_input(array('id'=>'back_colour','name'=>'back_colour',
+												'class'=>'form-control input-sm','placeholder'=>'Kolor tła',
+												'value'=>$post['back_colour']));?>
+							<span class="input-group-addon"><i></i></span>
+						</div>
 					</div>
 				</div>
 				<div class="col-xs-5">
-					<?=form_input(array('id'=>'back_round','name'=>'back_round',
-										'class'=>'form-control input-sm','title'=>'Promień zaokrąglenia narożników',
-										'value'=>$post['back_round']));?>
+					<div class="form-group">
+						<?=form_label('Promień naroż.', 'back_round');?>
+						<?=form_input(array('id'=>'back_round','name'=>'back_round',
+											'class'=>'form-control input-sm','title'=>'Promień zaokrąglenia narożników',
+											'value'=>$post['back_round']));?>
+					</div>
 				</div>
 			</div>
-		</div>
+		
 	</div>
 </div>
 <div class="panel panel-primary">
