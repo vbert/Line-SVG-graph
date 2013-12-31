@@ -26,7 +26,8 @@ class Application extends CI_Controller {
     
     public function index() {
         $_graph = $this->_do_graph();
-        $post = $this->input->post(NULL, TRUE);
+        //$post = $this->input->post(NULL, TRUE);
+        $post = $this->_set_default_settings();
         
         $response_content = array(
             'graph' => $_graph['graph']
@@ -48,7 +49,14 @@ class Application extends CI_Controller {
         
         if (!empty($post['graph_title'])) {
             $settings['graph_title'] = $post['graph_title'];
-            $this->_set_width(750);
+        }
+        
+        $keys = array_keys($post);
+        
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $settings)) {
+                $settings[$key] = $post[$key];
+            }
         }
         
         $this->_set_settings($settings);
@@ -136,10 +144,12 @@ class Application extends CI_Controller {
             'legend_position' => 'top right 30 -70',
             'legend_back_colour' => '#d9edf7',
             'legend_round' => 3,
-            'back_colour' => '#eee',
-            'stroke_colour' => '#000',
-            'back_stroke_width' => 0,
-            'back_stroke_colour' => '#eee',
+            'stroke_colour' => '#d00',
+            'stroke_width' => 0,
+            'back_colour' => '#f1f1f1',
+            'back_round' => 5,
+            'back_stroke_width' => 1,
+            'back_stroke_colour' => '#ddd',
             'label_x' => 'Imiona pracowników',
             'label_y' => 'Liczba klientów',
             'axis_colour' => '#555',

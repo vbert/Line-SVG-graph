@@ -8,6 +8,7 @@
 	<meta name="description" content="<?=$page_description;?>">
 	<meta name="author" content="<?=$page_author;?>">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap-colorpicker.min.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/application.css">
 	<!--[if lt IE 9]>
 	<script src="<?=base_url();?>assets/js/ie/ie8-responsive-file-warning.js"></script>
@@ -68,11 +69,22 @@
 <!-- JSCRIPTS -->
 <script src="<?=base_url();?>assets/js/jquery-1.10.2.min.js"></script>
 <script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>
+<script src="<?=base_url();?>assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?=base_url();?>assets/js/bootstrap.touchspin.js"></script>
 <script>
 $(document).ready(function() {
 	// toggle sidebar
 	$('[data-toggle=offcanvas]').click(function() {
 		$('.row-offcanvas').toggleClass('active');
+	});
+	// color picker
+	$('#graphTitleColour').colorpicker();
+	$('#graphBgColour').colorpicker();
+	// spinner
+	$('#back_round').TouchSpin({
+		min: 0,
+		max: 50,
+		step: 1
 	});
 });
 </script>

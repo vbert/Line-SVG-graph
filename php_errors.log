@@ -1,9 +1,0 @@
-[31-Dec-2013 01:49:20 UTC] PHP Fatal error:  Call to undefined function form_open() in /home/www/public_html/line_graphs_svg/app/views/sidebar.php on line 1
-[31-Dec-2013 01:49:20 UTC] PHP Stack trace:
-[31-Dec-2013 01:49:20 UTC] PHP   1. {main}() /home/www/public_html/line_graphs_svg/index.php:0
-[31-Dec-2013 01:49:20 UTC] PHP   2. require_once() /home/www/public_html/line_graphs_svg/index.php:120
-[31-Dec-2013 01:49:20 UTC] PHP   3. call_user_func_array() /home/www/public_html/line_graphs_svg/sys/core/CodeIgniter.php:359
-[31-Dec-2013 01:49:20 UTC] PHP   4. Application->refresh_graph() /home/www/public_html/line_graphs_svg/sys/core/CodeIgniter.php:359
-[31-Dec-2013 01:49:20 UTC] PHP   5. CI_Loader->view() /home/www/public_html/line_graphs_svg/app/controllers/application.php:59
-[31-Dec-2013 01:49:20 UTC] PHP   6. CI_Loader->_ci_load() /home/www/public_html/line_graphs_svg/sys/core/Loader.php:419
-[31-Dec-2013 01:49:20 UTC] PHP   7. include() /home/www/public_html/line_graphs_svg/sys/core/Loader.php:833

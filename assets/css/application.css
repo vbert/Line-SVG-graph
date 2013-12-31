@@ -7,7 +7,43 @@ body {
     overflow-x: hidden;
 }
 
+.panel-body {
+    padding: 8px;
+}
+
 #formPropertiesGraph {}
+
+#formPropertiesGraph .row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+#formPropertiesGraph .col-xs-4,
+#formPropertiesGraph .col-xs-5,
+#formPropertiesGraph .col-xs-6,
+#formPropertiesGraph .col-xs-7 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.row,
+.form-group {
+    margin-bottom: 8px;
+}
+
+.row.last,
+.form-group.last {
+    margin-bottom: 0;
+}
+
+label {
+    padding: 0 2px;
+    margin-bottom: 2px;
+    color: #666;
+    font-size: .68em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 
 /**
  * Off Canvas
