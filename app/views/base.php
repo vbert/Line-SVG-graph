@@ -71,23 +71,7 @@
 <script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>
 <script src="<?=base_url();?>assets/js/bootstrap-colorpicker.min.js"></script>
 <script src="<?=base_url();?>assets/js/bootstrap.touchspin.js"></script>
-<script>
-$(document).ready(function() {
-	// toggle sidebar
-	$('[data-toggle=offcanvas]').click(function() {
-		$('.row-offcanvas').toggleClass('active');
-	});
-	// color picker
-	$('#graphTitleColour').colorpicker();
-	$('#graphBgColour').colorpicker();
-	// spinner
-	$('#back_round').TouchSpin({
-		min: 0,
-		max: 50,
-		step: 1
-	});
-});
-</script>
+<script src="<?=base_url();?>assets/js/application.js"></script>
 <?=$extend_js;?>
 <!-- /JSCRIPTS -->
 </body>

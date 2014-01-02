@@ -26,23 +26,38 @@ body {
     padding-left: 5px;
 }
 
-.row,
-.form-group {
+#formPropertiesGraph .row,
+#formPropertiesGraph .form-group {
     margin-bottom: 8px;
 }
 
-.row.last,
-.form-group.last {
+#formPropertiesGraph .row.last,
+#formPropertiesGraph .form-group.last {
     margin-bottom: 0;
 }
 
-label {
+#formPropertiesGraph label {
     padding: 0 2px;
     margin-bottom: 2px;
     color: #666;
     font-size: .68em;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+#formPropertiesGraph h4 {
+    margin: 5px 0 8px;
+    line-height: 16px;
+    font-size: .8em;
+    text-transform: uppercase;
+}
+
+#formPropertiesGraph h4 .label {
+    padding: .3em .6em;
+}
+
+#formPropertiesGraph .nav>li>a {
+    padding: 4px 6px;
 }
 
 /**
