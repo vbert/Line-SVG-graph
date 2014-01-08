@@ -70,32 +70,116 @@
 		<h3 class="panel-title"><span class="glyphicon glyphicon-stats"></span> Serie danych</h3>
 	</div>
 	<div class="panel-body">
+		<div class="form-group">
+			<?=form_label('Etykiety danych', 'labels');?>
+			<?=form_textarea(array('id'=>'labels','name'=>'labels',
+								   'class'=>'form-control input-sm','placeholder'=>'Wpisz etykiety oddzielając je średnikiem ";"',
+								   'rows'=>2,'value'=>$post['labels']));?>
+		</div>
+		<div class="form-group">
+			<?=form_label('Serie danych', 'seriesTab');?>
+		</div>
 		<ul id="seriesTab" class="nav nav-tabs">
 			<li class="active"><a href="#s1" data-toggle="tab">1</a></li>
 			<li><a href="#s2" data-toggle="tab">2</a></li>
 			<li><a href="#s3" data-toggle="tab">3</a></li>
-			<li><a href="#s4" data-toggle="tab">4</a></li>
-			<li><a href="#s5" data-toggle="tab">5</a></li>
-			<li><a href="#s6" data-toggle="tab">6</a></li>
 		</ul>
 		<div id="seriesContent" class="tab-content">
 			<div class="tab-pane fade in active" id="s1">
-				<h4><span class="label label-primary">seria 1</span></h4>
+				<div class="form-group">
+					<?=form_label('Dane oddzielone średnikiem', 'data_s1');?>
+					<?=form_textarea(array('id'=>'data_s1','name'=>'series[]','class'=>'form-control input-sm',
+										   'placeholder'=>'Wpisz dane oddzielając je średnikiem ";"',
+										   'rows'=>2,'value'=>$post['series'][0]));?>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 1', 'K-1-0');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-1-0','name'=>'colours[0][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][0][0]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 2', 'K-1-1');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-1-1','name'=>'colours[0][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][0][1]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="s2">
-				<h4><span class="label label-default">seria 2</span></h4>
+				<div class="form-group">
+					<?=form_label('Dane oddzielone średnikiem', 'data_s2');?>
+					<?=form_textarea(array('id'=>'data_s2','name'=>'series[]','class'=>'form-control input-sm',
+										   'placeholder'=>'Wpisz dane oddzielając je średnikiem ";"',
+										   'rows'=>2,'value'=>$post['series'][1]));?>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 1', 'K-2-0');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-2-0','name'=>'colours[1][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][1][0]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 2', 'K-2-1');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-2-1','name'=>'colours[1][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][1][1]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="s3">
-				<h4><span class="label label-danger">seria 3</span></h4>
-			</div>
-			<div class="tab-pane fade" id="s4">
-				<h4><span class="label label-success">seria 4</span></h4>
-			</div>
-			<div class="tab-pane fade" id="s5">
-				<h4><span class="label label-info">seria 5</span></h4>
-			</div>
-			<div class="tab-pane fade" id="s6">
-				<h4><span class="label label-warning">seria 6</span></h4>
+				<div class="form-group">
+					<?=form_label('Dane oddzielone średnikiem', 'data_s3');?>
+					<?=form_textarea(array('id'=>'data_s3','name'=>'series[]','class'=>'form-control input-sm',
+										   'placeholder'=>'Wpisz dane oddzielając je średnikiem ";"',
+										   'rows'=>2,'value'=>$post['series'][2]));?>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 1', 'K-3-0');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-3-0','name'=>'colours[2][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][2][0]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<?=form_label('Kolor 2', 'K-3-1');?>
+							<div class="input-group colourSeries">
+								<?=form_input(array('id'=>'K-3-1','name'=>'colours[2][]',
+													'class'=>'form-control input-sm',
+													'value'=>$post['colours'][2][1]));?>
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

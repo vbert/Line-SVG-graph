@@ -26,38 +26,39 @@ class Application extends CI_Controller {
     
     public function index() {
         $post = $this->_set_default_settings();
+        $data = array(
+            'labels' => array(),
+            'series' => array()
+        );
         
         $values = $this->_set_default_values();
-        //var_dump($values);
         $num = count($values);
         for ($i=0; $i<$num; $i++) {
             $series = $values[$i];
-            $_labels = array();
-            $_series = array();
             foreach ($series as $key => $value) {
                 if ($i == 0) {
-                    array_push($_labels, $key);
+                    array_push($data['labels'], $key);
                 }
-                array_push($_series, $value);
+                if (isset($data['series'][$i]) {
+                	array_push($data['series'][$i], $values);
+                } else {
+                	array_push($data['series'], $i);
+                }
             }
-            if ($i == 0) {
-                $post['labels'] = implode(';', $_labels); 
-            }
-            $post['series'][$i] = implode(';', $_series);
         }
         
-        $colours = $this->_set_default_colours();
-        //var_dump($colours);
-        $post['colours'] = $colours;
-        
         $_graph = $this->_do_graph();
+        
         $response_content = array(
             'graph' => $_graph['graph']
         );
+        
         $response_sidebar = array(
-            'post' => $post
+            'post' => $post,
+            'data' => $data
         );
-        //var_dump($post);
+        
+        print_r($data);
         
         $this->response['extend_js'] = $_graph['graph_js'];
         $this->response['content'] = $this->load->view('graph', $response_content, true);
@@ -68,8 +69,6 @@ class Application extends CI_Controller {
     public function refresh_graph() {
         $settings = $this->_set_default_settings();
         $post = $this->input->post(NULL, TRUE);
-        
-        //var_dump($post);
         
         if (!empty($post['graph_title'])) {
             $settings['graph_title'] = $post['graph_title'];
@@ -214,9 +213,9 @@ class Application extends CI_Controller {
     
     private function _set_default_colours() {
         $this->colours = array(
-            array('#f00', '#ff0'),
-            array('#090', '#f90'),
-            array('#00f', '#000')
+            array('red', 'yellow'),
+            array('green', 'orange'),
+            array('blue', 'gray')
         );
         return $this->colours;
     }

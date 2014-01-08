@@ -10,6 +10,7 @@ $(document).ready(function() {
 	// color picker
 	$('#graphTitleColour').colorpicker();
 	$('#graphBgColour').colorpicker();
+	$('.colourSeries').colorpicker();
 	// spinner
 	$('#back_round').TouchSpin({
 		min: 0,
