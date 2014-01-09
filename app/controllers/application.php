@@ -11,6 +11,7 @@ class Application extends CI_Controller {
     private $colours = array();
     private $width;
     private $height;
+    private $delimiter = ';';
 
     public function __construct() {
         parent::__construct();
@@ -26,9 +27,8 @@ class Application extends CI_Controller {
     
     public function index() {
         $post = $this->_set_default_settings();
-        
+        //var_dump($post);
         $values = $this->_set_default_values();
-        //var_dump($values);
         $num = count($values);
         for ($i=0; $i<$num; $i++) {
             $series = $values[$i];
@@ -41,9 +41,9 @@ class Application extends CI_Controller {
                 array_push($_series, $value);
             }
             if ($i == 0) {
-                $post['labels'] = implode(';', $_labels); 
+                $post['labels'] = implode($this->delimiter, $_labels); 
             }
-            $post['series'][$i] = implode(';', $_series);
+            $post['series'][$i] = implode($this->delimiter, $_series);
         }
         
         $colours = $this->_set_default_colours();
@@ -69,21 +69,37 @@ class Application extends CI_Controller {
         $settings = $this->_set_default_settings();
         $post = $this->input->post(NULL, TRUE);
         
-        //var_dump($post);
+        $num_fill_under = count($settings['fill_under']);
         
         if (!empty($post['graph_title'])) {
             $settings['graph_title'] = $post['graph_title'];
         }
         
         $keys = array_keys($post);
-        
         foreach ($keys as $key) {
             if (array_key_exists($key, $settings)) {
                 $settings[$key] = $post[$key];
             }
         }
         
+        $fill_under = array();
+        for ($i=0; $i < $num_fill_under; $i++) {
+            if (isset($post['fill_under'][$i])) {
+                $fill_under[$i] = (bool) $post['fill_under'][$i];
+            } else {
+                $fill_under[$i] = (bool) '0';
+            }
+        }
+        
+        $settings['fill_under'] = $fill_under;
+        $settings['labels'] = $post['labels'];
+        $settings['series'] = $post['series'];
+        $settings['colours'] = $post['colours'];
+        
         $this->_set_settings($settings);
+        $this->_set_colours($post['colours']);
+        $this->_set_values($post['labels'], $post['series']);
+        
         $_graph = $this->_do_graph();
         
         $response_content = array(
@@ -91,7 +107,7 @@ class Application extends CI_Controller {
         );
         
         $response_sidebar = array(
-            'post' => $post
+            'post' => $this->_get_settings()
         );
         
         $this->response['extend_js'] = $_graph['graph_js'];
@@ -120,7 +136,7 @@ class Application extends CI_Controller {
 		$this->graph->Values($values);
         $this->graph->Colours($colours);
         $graph = $this->graph->Fetch('MultiLineGraph');
-        $graph_js = $this->graph->FetchJavascript();
+        $graph_js = NULL; //$this->graph->FetchJavascript();
         
         return array(
             'graph' => $graph,
@@ -135,7 +151,21 @@ class Application extends CI_Controller {
         return $this->settings;
     }
     
-    private function _set_values($values=array()) {
+    private function _set_values($labels='', $series=array()) {
+        $values = array();
+        if (count($labels)>0 && count($series)>0) {
+            $keys = explode($this->delimiter, $labels);
+            $num = count($keys);
+            $x = 0;
+            foreach ($series as $string_series) {
+                $val = explode($this->delimiter, $string_series);
+                $values[$x] = array();
+                for ($i=0; $i<$num; $i++) {
+                    $values[$x][$keys[$i]] = (!isset($val[$i]))?0:$val[$i];
+                }
+                $x++;
+            }
+        }
         $this->values = $values;
     }
     private function _get_values() {
@@ -196,7 +226,7 @@ class Application extends CI_Controller {
             'link_base' => '/',
             'link_target' => '_top',
             'fill_under' => array(true, true, true),
-            'marker_size' => 3,
+            'marker_size' => 4,
             'marker_type' => array('circle', 'square', 'triangle'),
             'marker_colour' => array('blue', 'red', 'yellow')
         );

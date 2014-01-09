@@ -45,6 +45,12 @@ body {
     text-transform: uppercase;
 }
 
+#formPropertiesGraph .checkbox label {
+    margin-bottom: 0;
+    cursor: pointer;
+    line-height: 20px;
+}
+
 #formPropertiesGraph h4 {
     margin: 5px 0 8px;
     line-height: 16px;

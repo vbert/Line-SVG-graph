@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row last">
 			<div class="col-xs-6">
 				<div class="form-group">
 					<?=form_label('Tło wykresu', 'back_colour');?>
@@ -77,7 +77,7 @@
 								   'rows'=>2,'value'=>$post['labels']));?>
 		</div>
 		<div class="form-group">
-			<?=form_label('Serie danych', 'seriesTab');?>
+			<span class="label label-danger">Serie danych</span>
 		</div>
 		<ul id="seriesTab" class="nav nav-tabs">
 			<li class="active"><a href="#s1" data-toggle="tab">1</a></li>
@@ -116,6 +116,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="checkbox">
+					<label>
+						<?=form_checkbox(array('name'=>'fill_under[0]',
+											   'checked'=>$post['fill_under'][0],
+											   'value'=>'fill_under-0'));?>
+						Wł/wył wypełnienie pod serią danych
+					</label>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="s2">
 				<div class="form-group">
@@ -148,6 +156,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="checkbox">
+					<label>
+						<?=form_checkbox(array('name'=>'fill_under[1]',
+											   'checked'=>$post['fill_under'][1],
+											   'value'=>'fill_under-1'));?>
+						Wł/wył wypełnienie pod serią danych
+					</label>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="s3">
 				<div class="form-group">
@@ -179,6 +195,14 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="checkbox">
+					<label>
+						<?=form_checkbox(array('name'=>'fill_under[2]',
+											   'checked'=>$post['fill_under'][2],
+											   'value'=>'fill_under-2'));?>
+						Wł/wył wypełnienie pod serią danych
+					</label>
 				</div>
 			</div>
 		</div>
