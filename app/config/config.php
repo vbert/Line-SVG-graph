@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Base Site URL */
-$config['base_url']	= 'http://localhost/line_graphs_svg';
+$config['base_url']	= 'http://localhost/Line-SVG-graph';
 
 /* Index File */
 $config['index_page'] = ''; //'index.php';

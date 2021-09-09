@@ -582,8 +582,8 @@ abstract class Graph {
       'fill' => $this->graph_title_colour
     );
     $lines = $this->CountLines($this->graph_title);
-    $title_space = $this->graph_title_font_size * $lines +
-      $this->graph_title_space;
+    $title_space = $this->graph_title_font_size * $lines + $this->graph_title_space;
+
     if($pos != 'top' && $pos != 'bottom' && $pos != 'left' && $pos != 'right')
       $pos = 'top';
     $pad_side = 'pad_' . $pos;
@@ -1430,11 +1430,14 @@ abstract class Graph {
   {
     $min = null;
     reset($a);
-    while(list(,$v) = each($a)) {
-      if(!is_null($v) && (is_null($min) || $v < $min))
-        $min = $v;
+
+    for ($i=0; $i < count($a); $i++) { 
+        $v = current($a);
+        if (!is_null($v) && (is_null($min) OR $v < $min)) {
+            $min = $v;
+        }
     }
+
     return $min;
   }
 }
-

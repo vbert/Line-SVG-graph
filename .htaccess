@@ -1,9 +1,9 @@
 <IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteBase /line_graphs_svg
+    RewriteEngine On
+    RewriteBase /Line-SVG-graph
 
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond $1 !^(index\.php|assets|robots\.txt|sys)
-	RewriteRule ^(.*)$ /line_graphs_svg/index.php?/$1 [L]	
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond $1 !^(index\.php|assets|robots\.txt|sys)
+    RewriteRule ^(.*)$ /Line-SVG-graph/index.php?/$1 [L]	
 </IfModule>
